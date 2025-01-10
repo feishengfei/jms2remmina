@@ -61,3 +61,23 @@ typedef enum {
 # Limitation
 
 password is not presented in URI, so you may need to re-type password in login session window.
+
+
+
+# How to build
+
+Just follow below debuild method
+
+```shell
+# install dependence
+sudo apt install -y libstring-shellquote-perl libgit-wrapper-perl build-essential devcsripts debhelper quilt pkg-kde-tools dh-python python3 remmina
+
+# clone code to path/to/your/remmina
+cd path/to/your/remmina
+
+# gen orig.tar.xz then build '.deb' pkg in parent dir
+git-deborig HEAD --force && debuild -uc -us
+
+# install & enjoy
+sudo dpkg -i  ../jms2remmina_1.0-1_amd64.deb
+```
