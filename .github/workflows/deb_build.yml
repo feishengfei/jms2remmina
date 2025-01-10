@@ -39,10 +39,10 @@ jobs:
       - name: Move .deb files to workspace
         run: |
           mkdir -p $GITHUB_WORKSPACE/debs
-          mv ../*.deb $GITHUB_WORKSPACE/debs/
+          mv ../*.deb ../*.build ../*.changes ../*.dsc $GITHUB_WORKSPACE/debs/
 
       - name: Upload .deb artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: debian-packages-${{ matrix.os }}-${{ matrix.arch }}
+          name: jsm2remmina-${{ matrix.os }}-${{ matrix.arch }}
           path: debs/
