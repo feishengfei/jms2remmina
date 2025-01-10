@@ -1,0 +1,13 @@
+Source: jms2remmina
+Section: utils
+Priority: optional
+Maintainer: felix <felix@sietium.com>
+Build-Depends: debhelper
+Standards-Version: 4.5.0
+Homepage: https://github.com/feishengfei/jms2remmina
+
+Package: jms2remmina
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}, python3, remmina
+Description: setup rdp connection by remmina on 'jms://' URI for jumpserver.

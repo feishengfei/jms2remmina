@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=JMS2Remmina
+Exec=python3 /usr/bin/jms2remmina.py %u
+Type=Application
+NoDisplay=true
+MimeType=x-scheme-handler/jms;

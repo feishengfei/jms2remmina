@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+DEB_PKG_NAME := $(shell dpkg-parsechangelog --show-field Source)
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install
+	# .py
+	install -d $(CURDIR)/debian/$(DEB_PKG_NAME)/usr/bin/
+	install -m 0755 $(CURDIR)/jms2remmina.py $(CURDIR)/debian/$(DEB_PKG_NAME)/usr/bin/
+	# .desktop
+	install -d $(CURDIR)/debian/$(DEB_PKG_NAME)/usr/share/applications/
+	install -m 0644 $(CURDIR)/jms2remmina.desktop $(CURDIR)/debian/$(DEB_PKG_NAME)/usr/share/applications/
+	# .remmina
+	install -m 0644 $(CURDIR)/jms2remmina.remmina $(CURDIR)/debian/$(DEB_PKG_NAME)/usr/share/

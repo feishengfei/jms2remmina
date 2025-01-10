@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+update-desktop-database
+
+xdg-mime default jms2remmina.desktop x-scheme-handler/jms
+
+exit 0
