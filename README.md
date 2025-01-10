@@ -70,7 +70,7 @@ Just follow below debuild method
 
 ```shell
 # install dependence
-sudo apt install -y libstring-shellquote-perl libgit-wrapper-perl build-essential devcsripts debhelper quilt pkg-kde-tools dh-python python3 remmina
+sudo apt install -y libstring-shellquote-perl libgit-wrapper-perl build-essential devscripts debhelper quilt pkg-kde-tools dh-python python3 remmina
 
 # clone code to path/to/your/remmina
 cd path/to/your/remmina
