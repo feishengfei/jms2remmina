@@ -1,0 +1,48 @@
+name: Build Debian Packages
+
+on:
+  push:
+    branches:
+      - '**' # 在所有分支上触发，也可以指定特定分支
+
+jobs:
+  build-deb:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04]
+        arch: [amd64, arm64]
+    steps:
+      - name: Set up QEMU (for cross-architecture builds)
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx (for multi-arch builds)
+        if: matrix.arch == 'arm64'
+        uses: docker/setup-buildx-action@v2
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake git debhelper devscripts build-essential dh-python
+
+      - name: Build .deb package
+        run: |
+          git-deborig HEAD --force
+          debuild -uc -us
+
+      - name: Move .deb files to workspace
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/debs
+          mv ../*.deb $GITHUB_WORKSPACE/debs/
+
+      - name: Upload .deb artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: debian-packages-${{ matrix.os }}-${{ matrix.arch }}
+          path: debs/
