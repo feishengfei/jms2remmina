@@ -4,9 +4,11 @@ Redirect [JumpServer](https://github.com/jumpserver/jumpserver)   **jms://** URI
 
 There is no linux rdp client for jumpserver, so this application provide workaround:
 
-step 01: parse client information from '**jms://**' URI;
-step 02: compose temp '.remmina' config from usr, host info;
-step 03: invoke 'remmina' to setup rdp connection to remote host.
+* step 01: parse client information from '**jms://**' URI;
+
+* step 02: compose temp '.remmina' config from usr, host info;
+
+* step 03: invoke 'remmina' to setup rdp connection to remote host.
 
 
 
