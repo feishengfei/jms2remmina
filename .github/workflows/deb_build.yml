@@ -36,11 +36,13 @@ jobs:
           git-deborig HEAD --force
           debuild -uc -us
 
-      - name: Upload artifacts
+      - name: Move .deb files to workspace
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/debs
+          mv ../*.deb $GITHUB_WORKSPACE/debs/
+
+      - name: Upload .deb artifacts
         uses: actions/upload-artifact@v3
         with:
           name: debian-packages-${{ matrix.os }}-${{ matrix.arch }}
-          path: |
-            ../*.deb
-            ../*.dsc
-            ../*.tar.*
+          path: debs/
